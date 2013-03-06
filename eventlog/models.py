@@ -6,7 +6,8 @@ from django.utils import timezone
 
 from django.contrib.auth.models import User
 
-import jsonfield
+from django_extensions.db.fields.json import JSONField
+
 
 
 PUSHER_CONFIG = getattr(settings, "PUSHER_CONFIG", None)
@@ -17,7 +18,7 @@ class Log(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     timestamp = models.DateTimeField(default=timezone.now)
     action = models.CharField(max_length=50)
-    extra = jsonfield.JSONField()
+    extra = JSONField()
     
     class Meta:
         ordering = ["-timestamp"]
