@@ -103,8 +103,8 @@ def find_package_data(
     return out
 
 
-PACKAGE = "django-eventlog-ca"
-NAME = "eventlog"
+PACKAGE = "eventlog"
+NAME = "django-eventlog-ca"
 DESCRIPTION = "an event logger - fork of http://github.com/eldarion/eventlog"
 AUTHOR = "Jeremy Satterfield, forked from Eldarion"
 AUTHOR_EMAIL = "jsatterfield@consumeraffairs.com"
@@ -133,7 +133,7 @@ setup(
         "Framework :: Django",
     ],
     setup_requires=[
-        "django_extensions>=1.0.0"
+        "django_extensions>=0.9"
     ],
     zip_safe=False
 )
