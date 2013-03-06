@@ -103,12 +103,12 @@ def find_package_data(
     return out
 
 
-PACKAGE = "eventlog"
+PACKAGE = "django-eventlog-ca"
 NAME = "eventlog"
-DESCRIPTION = "an event logger"
-AUTHOR = "Eldarion"
-AUTHOR_EMAIL = "developers@eldarion.com"
-URL = "http://github.com/eldarion/eventlog"
+DESCRIPTION = "an event logger - fork of http://github.com/eldarion/eventlog"
+AUTHOR = "Jeremy Satterfield, forked from Eldarion"
+AUTHOR_EMAIL = "jsatterfield@consumeraffairs.com"
+URL = "http://github.com/ConsumerAffairs/eventlog"
 VERSION = __import__(PACKAGE).__version__
 
 
@@ -133,7 +133,7 @@ setup(
         "Framework :: Django",
     ],
     setup_requires=[
-        "django-jsonfield>=0.8.11"
+        "django_extensions>=1.0.0"
     ],
     zip_safe=False
 )
