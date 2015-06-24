@@ -14,14 +14,17 @@ PUSHER_CONFIG = getattr(settings, "PUSHER_CONFIG", None)
 
 
 class Log(models.Model):
-    
+
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     timestamp = models.DateTimeField(default=timezone.now)
     action = models.CharField(max_length=50, db_index=True)
     extra = JSONField()
-    
+
     class Meta:
         ordering = ["-timestamp"]
+        index_together = [
+            ["action", "timestamp"],
+        ]
 
 
 def log(user, action, extra=None):
@@ -29,7 +32,7 @@ def log(user, action, extra=None):
         user = None
     if extra is None:
         extra = {}
-    
+
     if PUSHER_CONFIG:
         try:
             import pusher
@@ -46,5 +49,5 @@ def log(user, action, extra=None):
             })
         except Exception, e:
             Log.objects.create(user=user, action="PUSHER_FAILED", extra={"exception": str(e)})
-    
+
     return Log.objects.create(user=user, action=action, extra=extra)
