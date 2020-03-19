@@ -47,7 +47,9 @@ def log(user, action, extra=None):
                 "extra": extra,
                 "date": datetime.utcnow().isoformat()
             })
-        except Exception, e:
-            Log.objects.create(user=user, action="PUSHER_FAILED", extra={"exception": str(e)})
+        except Exception as e:
+            Log.objects.create(
+                user=user, action="PUSHER_FAILED",
+                extra={"exception": str(e.message)})
 
     return Log.objects.create(user=user, action=action, extra=extra)
